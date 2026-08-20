@@ -2,8 +2,6 @@ CREATE DATABASE stock_management;
 
 \c stock_management;
 
-CREATE TYPE movement_type AS ENUM ('IN', 'OUT');
-
 CREATE TABLE products (
     id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -17,7 +15,7 @@ CREATE TABLE products (
 CREATE TABLE stock_movements (
     id VARCHAR(36) PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    movement_type movement_type NOT NULL,
+    movement_type VARCHAR(3) NOT NULL CHECK (movement_type IN ('IN', 'OUT')),
     quantity INTEGER NOT NULL,
     product_id VARCHAR(36) NOT NULL,
     CONSTRAINT chk_stock_movement_id_not_empty CHECK (LENGTH(TRIM(id)) > 0),
