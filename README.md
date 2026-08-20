@@ -44,8 +44,8 @@ Le fichier `.env` doit contenir :
 
 ```
 DB_URL=jdbc:postgresql://localhost:5432/stock_management
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
+DB_USERNAME=nom_de_l_utilisateur
+DB_PASSWORD=mdp
 ```
 
 ### 4. Compiler et lancer
