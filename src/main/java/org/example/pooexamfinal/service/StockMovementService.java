@@ -37,7 +37,14 @@ public class StockMovementService {
                 dto.quantity(),
                 dto.productId()
         );
-        return stockMovementRepository.save(stockMovement);
+        stockMovementRepository.insert(
+                stockMovement.getId(),
+                stockMovement.getCreatedAt(),
+                stockMovement.getMovementType(),
+                stockMovement.getQuantity(),
+                stockMovement.getProductId()
+        );
+        return stockMovement;
     }
 
     public List<StockMovement> getAllStockMovements(MovementType type) {
