@@ -33,8 +33,8 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
         List<StockMovement> movements = stockMovementRepository.findByProductId(id);
-        long stock = movements.stream()
-                .mapToLong(m -> "IN".equals(m.getMovementType().name()) ? m.getQuantity() : -m.getQuantity())
+        int stock = movements.stream()
+                .mapToInt(m -> "IN".equals(m.getMovementType().name()) ? m.getQuantity() : -m.getQuantity())
                 .sum();
         return new StockResponse(product.getId(), product.getName(), stock);
     }
