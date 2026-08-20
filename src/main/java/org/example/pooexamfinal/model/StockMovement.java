@@ -1,6 +1,7 @@
 package org.example.pooexamfinal.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,11 +16,16 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StockMovement {
+public class StockMovement implements Persistable<String> {
     @Id
     private String id;
     private Instant createdAt;
     private MovementType movementType;
     private int quantity;
     private String productId;
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }
